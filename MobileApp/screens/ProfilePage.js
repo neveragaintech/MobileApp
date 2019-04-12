@@ -21,10 +21,10 @@ export default class Profile extends Component {
               <Text style={styles.description}>Lorem ipsum dolor sit amet, saepe sapientem eu nam. Qui ne assum electram expetendis, omittam deseruisse consequuntur ius an,</Text>
 
               <TouchableOpacity style={styles.buttonContainer}>
-                <Text>Opcion 1</Text>
+                <Text>Option 1</Text>
               </TouchableOpacity>
               <TouchableOpacity style={styles.buttonContainer}>
-                <Text>Opcion 2</Text>
+                <Text>Option 2</Text>
               </TouchableOpacity>
             </View>
         </View>
