@@ -21,28 +21,28 @@ const TabNavigator = createMaterialBottomTabNavigator({
  ForumPage: {
    screen: ForumPage,
    navigationOptions: { title: 'Forum',
-   tabBarColor: '#000000',
+   tabBarColor: '#db930d',
    tabBarIcon: <MatIcon size={24} color="white" name="form" />,
   },
    },
  JournalPage: {
    screen: JournalPage,
    navigationOptions: { title: 'Journal',
-   tabBarColor: '#000000',
+   tabBarColor: '#db930d',
    tabBarIcon: <MatIcon size={24} color="white" name="book" />,
 },
  },
  SkillsPage: {
    screen: SkillsPage,
    navigationOptions: { title: 'Skills',
-   tabBarColor: '#000000',
+   tabBarColor: '#db930d',
    tabBarIcon: <MatIcon size={24} color="white" name="Trophy" />,
 },
  },
 AboutUs: {
   screen: AboutUs,
   navigationOptions: { title: 'About',
-  tabBarColor: '#000000',
+  tabBarColor: '#db930d',
   tabBarIcon: <MatIcon size={24} color="white" name="team" />,
 },
                                                       },
@@ -50,7 +50,7 @@ AboutUs: {
  ProfilePage: {
    screen: ProfilePage,
    navigationOptions: { title: 'Profile',
-   tabBarColor: '#000000',
+   tabBarColor: '#db930d',
    tabBarIcon: <MatIcon size={24} color="white" name="tool" />,
 },
 
