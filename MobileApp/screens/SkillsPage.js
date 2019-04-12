@@ -7,7 +7,7 @@
  */
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, Button, Image, Dimensions, Modal, TouchableHighlight} from 'react-native';
+import {Platform, StyleSheet, Text, View, Button, Image, Dimensions, Modal, TouchableHighlight, TouchableOpacity} from 'react-native';
 import Carousel from 'react-native-snap-carousel';
 import {ENTRIES} from './SkillsEntries';
 
@@ -91,6 +91,10 @@ export default class SkillsCarousel extends Component {
                 <Image style={styles.image} source={{uri: item.illustration}}/>
                 </TouchableHighlight>
                 <Text style={styles.title}>{item.title}</Text>
+                <View style={styles.bottomHalf}>
+                <Text style={styles.gap}>{'\n'}{'\n'}{'\n'}{'\n'}{'\n'}</Text>
+                <Text style={styles.desc}>{item.desc}</Text>
+                </View>
 
 
 
@@ -123,14 +127,14 @@ export default class SkillsCarousel extends Component {
             <View style={{marginTop: 100}}>
             <View>
 
-            <TouchableHighlight
+            <TouchableOpacity
             onPress={() => {
               this.setState({mindfulnessModal: false});;
             }}>
             <Text>Close</Text>
-            </TouchableHighlight>
+            </TouchableOpacity>
 
-            <Text>Mindfulness</Text>
+            <Text style={styles.paragraph}>Mindfulness</Text>
 
 
             </View>
@@ -148,14 +152,14 @@ export default class SkillsCarousel extends Component {
             <View style={{marginTop: 100}}>
             <View>
 
-            <TouchableHighlight
+            <TouchableOpacity
             onPress={() => {
               this.setState({deepbreathingModal: false});;
             }}>
             <Text>Close</Text>
-            </TouchableHighlight>
+            </TouchableOpacity>
 
-            <Text>Deep Breathing</Text>
+            <Text style={styles.paragraph}>Deep Breathing</Text>
 
             </View>
             </View>
@@ -172,14 +176,14 @@ export default class SkillsCarousel extends Component {
             <View style={{marginTop: 100}}>
             <View>
 
-            <TouchableHighlight
+            <TouchableOpacity
             onPress={() => {
               this.setState({pmrModal: false});;
             }}>
             <Text>Close</Text>
-            </TouchableHighlight>
+            </TouchableOpacity>
 
-            <Text>Progressive Muscle Relaxation</Text>
+            <Text style={styles.paragraph}>Progressive Muscle Relaxation</Text>
 
             </View>
             </View>
@@ -196,14 +200,14 @@ export default class SkillsCarousel extends Component {
             <View style={{marginTop: 100}}>
             <View>
 
-            <TouchableHighlight
+            <TouchableOpacity
             onPress={() => {
               this.setState({selfsoothingModal: false});;
             }}>
             <Text>Close</Text>
-            </TouchableHighlight>
+            </TouchableOpacity>
 
-            <Text>Self-Soothing</Text>
+            <Text style={styles.paragraph}>Self-Soothing</Text>
 
             </View>
             </View>
@@ -220,14 +224,14 @@ export default class SkillsCarousel extends Component {
             <View style={{marginTop: 100}}>
             <View>
 
-            <TouchableHighlight
+            <TouchableOpacity
             onPress={() => {
               this.setState({exerciseModal: false});;
             }}>
             <Text>Close</Text>
-            </TouchableHighlight>
+            </TouchableOpacity>
 
-            <Text>Exercise</Text>
+            <Text style={styles.paragraph}>Exercise</Text>
 
             </View>
             </View>
@@ -244,14 +248,14 @@ export default class SkillsCarousel extends Component {
             <View style={{marginTop: 100}}>
             <View>
 
-            <TouchableHighlight
+            <TouchableOpacity
             onPress={() => {
               this.setState({socialsupportModal: false});;
             }}>
             <Text>Close</Text>
-            </TouchableHighlight>
+            </TouchableOpacity>
 
-            <Text>Social Support</Text>
+            <Text style={styles.paragraph}>Social Support</Text>
 
             </View>
             </View>
@@ -271,6 +275,11 @@ const colors = {
 };
 
 var styles = StyleSheet.create({
+
+  gap:{
+    backgroundColor: 'white'
+
+  },
     safeArea: {
         flex: 1,
         backgroundColor: colors.black
@@ -304,6 +313,23 @@ var styles = StyleSheet.create({
         backgroundColor: 'white',
         color: 'black',
         fontSize: 20,
+        fontWeight: 'bold',
+        textAlign: 'center'
+    },
+    paragraph: {
+        paddingHorizontal: 30,
+        backgroundColor: 'white',
+        color: 'black',
+        fontSize: 12,
+        fontWeight: 'bold',
+        textAlign: 'center'
+    },
+
+    desc: {
+        paddingHorizontal: 30,
+        backgroundColor: 'white',
+        color: 'black',
+        fontSize: 15,
         fontWeight: 'bold',
         textAlign: 'center'
     },
