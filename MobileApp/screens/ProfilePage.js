@@ -168,6 +168,13 @@ export default class ProfilePage extends React.Component{
 
                 <TextInput secureTextEntry={true} style={{borderWidth: 0.5}}/>
 
+                <TouchableOpacity
+                style={styles.deactivateButton}
+
+                >
+                <Text>Save Password</Text>
+                </TouchableOpacity>
+
                 </Collapsible>
 
                 <TouchableOpacity
