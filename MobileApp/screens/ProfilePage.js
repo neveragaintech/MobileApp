@@ -39,6 +39,15 @@ export default class ProfilePage extends React.Component{
                 <Divider>Settings</Divider>
 
                 <View style={{flex: 1, alignItems: 'center'}}>
+
+                <TouchableOpacity
+                style={styles.button}
+                //onPress={onPressLearnMore}
+
+                >
+                <Text>Notifications</Text>
+                </TouchableOpacity>
+
                 <TouchableOpacity
                 style={styles.button}
                 //onPress={onPressLearnMore}
@@ -46,6 +55,31 @@ export default class ProfilePage extends React.Component{
                 >
                 <Text>Account Settings</Text>
                 </TouchableOpacity>
+
+                <TouchableOpacity
+                style={styles.button}
+                //onPress={onPressLearnMore}
+
+                >
+                <Text>Change Password</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                style={styles.button}
+                //onPress={onPressLearnMore}
+
+                >
+                <Text>Deactivate Account</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                style={styles.button}
+                //onPress={onPressLearnMore}
+
+                >
+                <Text>Log Out</Text>
+                </TouchableOpacity>
+
                 </View>
                 </ScrollView>
                 );
