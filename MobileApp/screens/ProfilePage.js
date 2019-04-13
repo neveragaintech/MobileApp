@@ -157,6 +157,18 @@ export default class ProfilePage extends React.Component{
                 </TouchableOpacity>
 
                 <Collapsible collapsed={!this.state.deactivateCol}>
+
+                <Text>Enter Reason for Deactivation: </Text>
+
+                <TextInput secureTextEntry={true} style={{borderWidth: 0.5, height: 70}} multiline={true}/>
+
+                <TouchableOpacity
+                style={styles.deactivateButton}
+
+                >
+                <Text>Confirm Deactivation</Text>
+                </TouchableOpacity>
+
                 </Collapsible>
 
                 <TouchableOpacity
@@ -225,5 +237,18 @@ const styles = StyleSheet.create({
          width:250,
          borderRadius:30,
          backgroundColor: "#00BFFF",
-                                 }
+       },
+
+
+                                 deactivateButton: {
+                                   marginTop:10,
+         height:25,
+         flexDirection: 'row',
+         justifyContent: 'center',
+         alignItems: 'center',
+         marginBottom:10,
+         width:150,
+         borderRadius:10,
+         backgroundColor: "#00BFFF",
+       },
                                  });
