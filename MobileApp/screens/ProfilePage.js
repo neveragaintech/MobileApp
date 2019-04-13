@@ -4,11 +4,59 @@ import Divider from 'react-native-divider';
 import PhotoUpload from 'react-native-photo-upload'
 import ImagePicker from 'react-native-image-picker';
 import LinearGradient from 'react-native-linear-gradient';
+import Collapsible from 'react-native-collapsible';
 //import { Button } from 'react-native-elements';
-import {Platform, StyleSheet, Text, View, ScrollView, Button, Image, TouchableOpacity} from 'react-native';
+import {Platform, StyleSheet, Text, View, ScrollView, Button, Image, TouchableOpacity, Switch, TextInput} from 'react-native';
 
 type Props = {};
 export default class ProfilePage extends React.Component{
+
+  state = {
+    switchValue: false,
+    notificationCol: false,
+    acctsettingsCol: false,
+    passwordCol: false,
+    deactivateCol: false,
+  };
+
+  toggleSwitch = value => {
+    //onValueChange of the switch this function will be called
+    this.setState({ switchValue: value });
+    //state changes according to switch
+    //which will result in re-render the text
+  };
+
+
+  openNotifs = () => {
+
+    currVal = this.state.notificationCol;
+    this.setState({ notificationCol: !currVal });
+
+  };
+
+
+  openAcctSettings = () => {
+
+    currVal = this.state.acctsettingsCol;
+    this.setState({ acctsettingsCol: !currVal });
+
+  };
+
+
+  openPassword = () => {
+
+    currVal = this.state.passwordCol;
+    this.setState({ passwordCol: !currVal });
+
+  };
+
+
+  openDeactivate = () => {
+
+    currVal = this.state.deactivateCol;
+    this.setState({ deactivateCol: !currVal });
+
+  };
     render() {
         return (
                 <ScrollView>
@@ -40,37 +88,75 @@ export default class ProfilePage extends React.Component{
 
                 <View style={{flex: 1, alignItems: 'center'}}>
 
+
+
+
+
+ <TouchableOpacity
+ style={styles.button}
+ onPress={this.openNotifs}
+
+ >
+ <Text>Notifications</Text>
+ </TouchableOpacity>
+
+ <Collapsible collapsed={!this.state.notificationCol}>
+
+ <Text>{this.state.switchValue ? 'Notifications are ON' : 'Notifications are OFF'}</Text>
+
+                <Switch
+         style={{ marginTop: 30 }}
+         onValueChange={this.toggleSwitch}
+         value={this.state.switchValue}
+       />
+
+       </Collapsible>
+
+
                 <TouchableOpacity
                 style={styles.button}
-                //onPress={onPressLearnMore}
-
-                >
-                <Text>Notifications</Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity
-                style={styles.button}
-                //onPress={onPressLearnMore}
+                onPress={this.openAcctSettings}
 
                 >
                 <Text>Account Settings</Text>
                 </TouchableOpacity>
 
+                <Collapsible collapsed={!this.state.acctsettingsCol}>
+                </Collapsible>
+
                 <TouchableOpacity
                 style={styles.button}
-                //onPress={onPressLearnMore}
+                onPress={this.openPassword}
 
                 >
                 <Text>Change Password</Text>
                 </TouchableOpacity>
 
+                <Collapsible collapsed={!this.state.passwordCol}>
+                <Text>Old Password: </Text>
+                <TextInput secureTextEntry={true} style={styles.default}/>
+
+                <Text>New Password: </Text>
+
+                <TextInput secureTextEntry={true} style={styles.default}/>
+
+                <Text>New Password Again: </Text>
+
+
+                <TextInput secureTextEntry={true} style={styles.default}/>
+
+                </Collapsible>
+
                 <TouchableOpacity
                 style={styles.button}
-                //onPress={onPressLearnMore}
+                onPress={this.openDeactivate}
 
                 >
                 <Text>Deactivate Account</Text>
                 </TouchableOpacity>
+
+                <Collapsible collapsed={!this.state.deactivateCol}>
+                </Collapsible>
 
                 <TouchableOpacity
                 style={styles.button}
