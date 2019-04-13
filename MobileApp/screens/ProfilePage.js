@@ -122,6 +122,28 @@ export default class ProfilePage extends React.Component{
                 </TouchableOpacity>
 
                 <Collapsible collapsed={!this.state.acctsettingsCol}>
+
+                <Text>Enter New Username</Text>
+
+                <TextInput secureTextEntry={true} style={{borderWidth: 0.5, height: 35}} multiline={false}/>
+
+                <TouchableOpacity
+                style={styles.deactivateButton}
+
+                >
+                <Text>Save Username</Text>
+                </TouchableOpacity>
+
+                <Text>Enter New Bio: </Text>
+
+                <TextInput secureTextEntry={true} style={{borderWidth: 0.5, height: 70}} multiline={true}/>
+
+                <TouchableOpacity
+                style={styles.deactivateButton}
+
+                >
+                <Text>Save Bio</Text>
+                </TouchableOpacity>
                 </Collapsible>
 
                 <TouchableOpacity
