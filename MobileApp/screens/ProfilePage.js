@@ -5,14 +5,14 @@ import PhotoUpload from 'react-native-photo-upload'
 import ImagePicker from 'react-native-image-picker';
 import LinearGradient from 'react-native-linear-gradient';
 //import { Button } from 'react-native-elements';
-import {Platform, StyleSheet, Text, View, ScrollView, Button, Image} from 'react-native';
+import {Platform, StyleSheet, Text, View, ScrollView, Button, Image, TouchableOpacity} from 'react-native';
 
 type Props = {};
 export default class ProfilePage extends React.Component{
     render() {
         return (
                 <ScrollView>
-                
+
                 <PhotoUpload
                 onPhotoSelect={avatar => {
                 if (avatar) {
@@ -33,19 +33,20 @@ export default class ProfilePage extends React.Component{
                 }}
                 />
                 </PhotoUpload>
-                
+
                 <Text style={styles.welcome}>username</Text>
                 <Text style={styles.about}>this is the profiles bio but does this work?</Text>
                 <Divider>Settings</Divider>
-                
-                <Button
+
+                <View style={{flex: 1, alignItems: 'center'}}>
+                <TouchableOpacity
                 style={styles.button}
                 //onPress={onPressLearnMore}
-                title="Account Settings"
-                color="#841584"
-                accessibilityLabel="Learn more about this purple button"
-                />
-                
+
+                >
+                <Text>Account Settings</Text>
+                </TouchableOpacity>
+                </View>
                 </ScrollView>
                 );
     }
@@ -94,14 +95,14 @@ const styles = StyleSheet.create({
                                  color: '#333333',
                                  },
                                  button: {
-                                 marginRight:40,
-                                 marginLeft:40,
-                                 marginTop:10,
-                                 paddingTop:10,
-                                 paddingBottom:10,
-                                 backgroundColor:'#1E6738',
-                                 borderRadius:10,
-                                 borderWidth: 1,
-                                 borderColor: '#fff',
+                                   marginTop:10,
+         height:45,
+         flexDirection: 'row',
+         justifyContent: 'center',
+         alignItems: 'center',
+         marginBottom:20,
+         width:250,
+         borderRadius:30,
+         backgroundColor: "#00BFFF",
                                  }
                                  });
