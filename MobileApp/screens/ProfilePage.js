@@ -134,16 +134,17 @@ export default class ProfilePage extends React.Component{
 
                 <Collapsible collapsed={!this.state.passwordCol}>
                 <Text>Old Password: </Text>
-                <TextInput secureTextEntry={true} style={styles.default}/>
+
+                <TextInput secureTextEntry={true} style={{borderWidth: 0.5}}/>
 
                 <Text>New Password: </Text>
 
-                <TextInput secureTextEntry={true} style={styles.default}/>
+                <TextInput secureTextEntry={true} style={{borderWidth: 0.5}}/>
 
                 <Text>New Password Again: </Text>
 
 
-                <TextInput secureTextEntry={true} style={styles.default}/>
+                <TextInput secureTextEntry={true} style={{borderWidth: 0.5}}/>
 
                 </Collapsible>
 
