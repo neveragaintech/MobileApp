@@ -85,7 +85,7 @@ export default class SkillsCarousel extends Component {
 
       const currFunct = "" + item.function
         return (
-            <View style={styles.slide}>
+            <View style={styles.slider}>
             <Text>{'\n'}{'\n'}{'\n'}{'\n'}{'\n'}</Text>
             <TouchableHighlight onPress={this.handlePress.bind(this, currFunct)}>
                 <Image style={styles.image} source={{uri: item.illustration}}/>
@@ -286,7 +286,7 @@ var styles = StyleSheet.create({
     },
     container: {
         flex: 1,
-        backgroundColor: colors.background1
+        backgroundColor: 'white'
     },
     gradient: {
         ...StyleSheet.absoluteFillObject
@@ -303,35 +303,34 @@ var styles = StyleSheet.create({
     exampleContainerLight: {
         backgroundColor: 'white'
     },
+    // style for the rounded images
     image:{
-      width: 300,
-      height: 300,
-
+        width: 300,
+        height: 300,
+        borderRadius: 300/2,
     },
+    // style for the title of the skill
     title: {
-        paddingHorizontal: 30,
-        backgroundColor: 'white',
-        color: 'black',
+        marginTop: 25,
+        margin: 10,
         fontSize: 20,
         fontWeight: 'bold',
-        textAlign: 'center'
+        textAlign: 'center',
     },
     paragraph: {
-        paddingHorizontal: 30,
-        backgroundColor: 'white',
-        color: 'black',
-        fontSize: 12,
+        fontSize: 20,
         fontWeight: 'bold',
-        textAlign: 'center'
+        textAlign: 'center',
+        backgroundColor: 'white',
     },
-
+    // style for the description of the skill
     desc: {
-        paddingHorizontal: 30,
-        backgroundColor: 'white',
-        color: 'black',
+        marginHorizontal: 15,
+        fontStyle: 'italic',
+        textAlign: 'center',
+        color: '#333333',
         fontSize: 15,
-        fontWeight: 'bold',
-        textAlign: 'center'
+        marginBottom: 200,
     },
     titleDark: {
         color: colors.black
@@ -347,7 +346,8 @@ var styles = StyleSheet.create({
     },
     slider: {
         marginTop: 15,
-        overflow: 'visible' // for custom animations
+        overflow: 'visible', // for custom animations
+        backgroundColor: 'white',
     },
     sliderContentContainer: {
         paddingVertical: 10 // for custom animation
@@ -364,6 +364,6 @@ var styles = StyleSheet.create({
     view:{
       alignItems: 'center',
       justifyContent: 'center',
-
+      backgroundColor: 'white',
     },
 });
