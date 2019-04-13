@@ -125,7 +125,7 @@ export default class ProfilePage extends React.Component{
 
                 <Text>Enter New Username</Text>
 
-                <TextInput secureTextEntry={true} style={{borderWidth: 0.5, height: 35}} multiline={false}/>
+                <TextInput style={{borderWidth: 0.5, height: 35}} multiline={false}/>
 
                 <TouchableOpacity
                 style={styles.deactivateButton}
@@ -136,7 +136,7 @@ export default class ProfilePage extends React.Component{
 
                 <Text>Enter New Bio: </Text>
 
-                <TextInput secureTextEntry={true} style={{borderWidth: 0.5, height: 70}} multiline={true}/>
+                <TextInput style={{borderWidth: 0.5, height: 70}} multiline={true}/>
 
                 <TouchableOpacity
                 style={styles.deactivateButton}
@@ -189,7 +189,7 @@ export default class ProfilePage extends React.Component{
 
                 <Text>Enter Reason for Deactivation: </Text>
 
-                <TextInput secureTextEntry={true} style={{borderWidth: 0.5, height: 70}} multiline={true}/>
+                <TextInput style={{borderWidth: 0.5, height: 70}} multiline={true}/>
 
                 <TouchableOpacity
                 style={styles.deactivateButton}
