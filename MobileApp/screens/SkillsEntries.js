@@ -1,32 +1,49 @@
 export const ENTRIES = [
     {
-        title: 'Skill 1',
+        title: 'Mindfulness',
         subtitle: 'Lorem ipsum dolor sit amet et nuncat mergitur',
-        illustration: 'https://i.imgur.com/UYiroysl.jpg'
+        illustration: 'https://i.imgur.com/UYiroysl.jpg',
+        desc: 'A guide to staying present and in the moment',
+        function: 'mindfulness'
     },
     {
-        title: 'Skill 2',
+        title: 'Deep Breathing',
         subtitle: 'Lorem ipsum dolor sit amet',
-        illustration: 'https://i.imgur.com/UPrs1EWl.jpg'
+        illustration: 'https://i.imgur.com/UPrs1EWl.jpg',
+        desc: 'How to focus on your breathing and use that as a relaxation technique',
+        function: 'deepbreathing'
+
     },
     {
-        title: 'Skill 3',
+        title: 'Progressive Muscle Relaxation',
         subtitle: 'Lorem ipsum dolor sit amet et nuncat ',
-        illustration: 'https://i.imgur.com/MABUbpDl.jpg'
+        illustration: 'https://i.imgur.com/MABUbpDl.jpg',
+        desc: 'Tips to relax your muscles one at a time to refresh your whole body',
+        function: 'pmr'
+
     },
     {
-        title: 'Skill 4',
+        title: 'Self-Soothing',
         subtitle: 'Lorem ipsum dolor sit amet et nuncat mergitur',
-        illustration: 'https://i.imgur.com/KZsmUi2l.jpg'
+        illustration: 'https://i.imgur.com/KZsmUi2l.jpg',
+        desc: 'Strategies for coping with distressing situations by yourself',
+        function: 'selfsoothing'
+
     },
     {
-        title: 'Skill 5',
+        title: 'Exercise',
         subtitle: 'Lorem ipsum dolor sit amet',
-        illustration: 'https://i.imgur.com/2nCt3Sbl.jpg'
+        illustration: 'https://i.imgur.com/2nCt3Sbl.jpg',
+        desc: 'Easy exercises you can do at home or on-the-go',
+        function: 'exercise'
+
     },
     {
-        title: 'Skill 6',
+        title: 'Social Support',
         subtitle: 'Lorem ipsum dolor sit amet',
-        illustration: 'https://i.imgur.com/lceHsT6l.jpg'
+        illustration: 'https://i.imgur.com/lceHsT6l.jpg',
+        desc: 'Examples of ways to find support socially from your friends, family, and community',
+        function: 'socialsupport'
+
     }
 ];

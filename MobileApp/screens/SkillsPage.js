@@ -7,7 +7,7 @@
  */
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, Button, Image, Dimensions} from 'react-native';
+import {Platform, StyleSheet, Text, View, Button, Image, Dimensions, Modal, TouchableHighlight, TouchableOpacity} from 'react-native';
 import Carousel from 'react-native-snap-carousel';
 import {ENTRIES} from './SkillsEntries';
 
@@ -18,6 +18,7 @@ function wp (percentage) {
     return Math.round(value);
 }
 
+
 const slideHeight = viewportHeight * 0.36;
 const slideWidth = wp(75);
 const itemHorizontalMargin = wp(2);
@@ -25,14 +26,77 @@ const itemHorizontalMargin = wp(2);
 const sliderWidth = viewportWidth;
 const itemWidth = slideWidth + itemHorizontalMargin * 2;
 
+
+
+
 export default class SkillsCarousel extends Component {
 
+  constructor (props) {
+        super(props);
+        this.state = {
+          mindfulnessModal: false,
+          deepbreathingModal: false,
+          pmrModal: false,
+          selfsoothingModal: false,
+          exerciseModal: false,
+          socialsupportModal: false
+        };
+    }
+
+
+
+
+  handlePress(text) {
+    switch(text) {
+
+    case 'mindfulness':
+    this.setState({mindfulnessModal: true});
+      break;
+
+    case 'deepbreathing':
+    this.setState({deepbreathingModal: true});
+      break;
+
+    case 'pmr':
+    this.setState({pmrModal: true});
+      break;
+
+    case 'selfsoothing':
+    this.setState({selfsoothingModal: true});
+      break;
+
+      case 'exercise':
+      this.setState({exerciseModal: true});
+        break;
+
+        case 'socialsupport':
+        this.setState({socialsupportModal: true});
+          break;
+
+    default:
+      Alert.alert("MODAL NOT FOUND");
+
+    }
+      }
+
+
+
     _renderItem ({item, index}) {
+
+      const currFunct = "" + item.function
         return (
             <View style={styles.slide}>
             <Text>{'\n'}{'\n'}{'\n'}{'\n'}{'\n'}</Text>
+            <TouchableHighlight onPress={this.handlePress.bind(this, currFunct)}>
                 <Image style={styles.image} source={{uri: item.illustration}}/>
+                </TouchableHighlight>
                 <Text style={styles.title}>{item.title}</Text>
+                <View style={styles.bottomHalf}>
+                <Text style={styles.gap}>{'\n'}{'\n'}{'\n'}{'\n'}{'\n'}</Text>
+                <Text style={styles.desc}>{item.desc}</Text>
+                </View>
+
+
 
             </View>
         );
@@ -44,7 +108,7 @@ export default class SkillsCarousel extends Component {
             <Carousel
               ref={(c) => { this._carousel = c; }}
               data={ENTRIES}
-              renderItem={this._renderItem}
+              renderItem={this._renderItem.bind(this)}
               sliderWidth={sliderWidth}
               itemWidth={itemWidth}
               layout={'stack'}
@@ -52,6 +116,151 @@ export default class SkillsCarousel extends Component {
               loop={true}
               removeClippedSubviews={false}
             />
+
+            <Modal
+            animationType="slide"
+            transparent={false}
+            visible={this.state.mindfulnessModal}
+            onRequestClose={() => {
+            Alert.alert('Modal has been closed.');
+            }}>
+            <View style={{marginTop: 100}}>
+            <View>
+
+            <TouchableOpacity
+            onPress={() => {
+              this.setState({mindfulnessModal: false});;
+            }}>
+            <Text>Close</Text>
+            </TouchableOpacity>
+
+            <Text style={styles.paragraph}>Mindfulness</Text>
+
+
+            </View>
+            </View>
+            </Modal>
+
+
+            <Modal
+            animationType="slide"
+            transparent={false}
+            visible={this.state.deepbreathingModal}
+            onRequestClose={() => {
+            Alert.alert('Modal has been closed.');
+            }}>
+            <View style={{marginTop: 100}}>
+            <View>
+
+            <TouchableOpacity
+            onPress={() => {
+              this.setState({deepbreathingModal: false});;
+            }}>
+            <Text>Close</Text>
+            </TouchableOpacity>
+
+            <Text style={styles.paragraph}>Deep Breathing</Text>
+
+            </View>
+            </View>
+            </Modal>
+
+
+            <Modal
+            animationType="slide"
+            transparent={false}
+            visible={this.state.pmrModal}
+            onRequestClose={() => {
+            Alert.alert('Modal has been closed.');
+            }}>
+            <View style={{marginTop: 100}}>
+            <View>
+
+            <TouchableOpacity
+            onPress={() => {
+              this.setState({pmrModal: false});;
+            }}>
+            <Text>Close</Text>
+            </TouchableOpacity>
+
+            <Text style={styles.paragraph}>Progressive Muscle Relaxation</Text>
+
+            </View>
+            </View>
+            </Modal>
+
+
+            <Modal
+            animationType="slide"
+            transparent={false}
+            visible={this.state.selfsoothingModal}
+            onRequestClose={() => {
+            Alert.alert('Modal has been closed.');
+            }}>
+            <View style={{marginTop: 100}}>
+            <View>
+
+            <TouchableOpacity
+            onPress={() => {
+              this.setState({selfsoothingModal: false});;
+            }}>
+            <Text>Close</Text>
+            </TouchableOpacity>
+
+            <Text style={styles.paragraph}>Self-Soothing</Text>
+
+            </View>
+            </View>
+            </Modal>
+
+
+            <Modal
+            animationType="slide"
+            transparent={false}
+            visible={this.state.exerciseModal}
+            onRequestClose={() => {
+            Alert.alert('Modal has been closed.');
+            }}>
+            <View style={{marginTop: 100}}>
+            <View>
+
+            <TouchableOpacity
+            onPress={() => {
+              this.setState({exerciseModal: false});;
+            }}>
+            <Text>Close</Text>
+            </TouchableOpacity>
+
+            <Text style={styles.paragraph}>Exercise</Text>
+
+            </View>
+            </View>
+            </Modal>
+
+
+            <Modal
+            animationType="slide"
+            transparent={false}
+            visible={this.state.socialsupportModal}
+            onRequestClose={() => {
+            Alert.alert('Modal has been closed.');
+            }}>
+            <View style={{marginTop: 100}}>
+            <View>
+
+            <TouchableOpacity
+            onPress={() => {
+              this.setState({socialsupportModal: false});;
+            }}>
+            <Text>Close</Text>
+            </TouchableOpacity>
+
+            <Text style={styles.paragraph}>Social Support</Text>
+
+            </View>
+            </View>
+            </Modal>
+
 
             </View>
         );
@@ -66,6 +275,11 @@ const colors = {
 };
 
 var styles = StyleSheet.create({
+
+  gap:{
+    backgroundColor: 'white'
+
+  },
     safeArea: {
         flex: 1,
         backgroundColor: colors.black
@@ -99,6 +313,23 @@ var styles = StyleSheet.create({
         backgroundColor: 'white',
         color: 'black',
         fontSize: 20,
+        fontWeight: 'bold',
+        textAlign: 'center'
+    },
+    paragraph: {
+        paddingHorizontal: 30,
+        backgroundColor: 'white',
+        color: 'black',
+        fontSize: 12,
+        fontWeight: 'bold',
+        textAlign: 'center'
+    },
+
+    desc: {
+        paddingHorizontal: 30,
+        backgroundColor: 'white',
+        color: 'black',
+        fontSize: 15,
         fontWeight: 'bold',
         textAlign: 'center'
     },

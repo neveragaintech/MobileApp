@@ -1,11 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
-
 import React from 'react';
 // npm install react-native-divider --save
 import Divider from 'react-native-divider';
@@ -17,46 +9,46 @@ import {Platform, StyleSheet, Text, View, ScrollView, Button, Image} from 'react
 
 type Props = {};
 export default class ProfilePage extends React.Component{
-  render() {
-    return (
-      <ScrollView>
-
-        <PhotoUpload
-            onPhotoSelect={avatar => {
-            if (avatar) {
-            console.log('Image base64 string: ', avatar)
-            }
-            }}
-            >
-            <Image
-            style={{
-            marginTop: 75,
-            width: 150,
-            height: 150,
-            borderRadius: 150/2,
-            }}
-            resizeMode='cover'
-            source={{
-            uri: 'https://images.unsplash.com/photo-1553531580-54bcdf7bc851?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=80'
-            }}
-            />
-            </PhotoUpload>
-            
-            <Text style={styles.welcome}>username</Text>
-            <Text style={styles.about}>this is the profiles bio but does this work?</Text>
-            <Divider>Settings</Divider>
-            
-            <Button
-            style={styles.button}
-            //onPress={onPressLearnMore}
-            title="Account Settings"
-            color="#841584"
-            accessibilityLabel="Learn more about this purple button"
-            />
-            
-      </ScrollView>
-    );
-  }
+    render() {
+        return (
+                <ScrollView>
+                
+                <PhotoUpload
+                onPhotoSelect={avatar => {
+                if (avatar) {
+                console.log('Image base64 string: ', avatar)
+                }
+                }}
+                >
+                <Image
+                style={{
+                marginTop: 75,
+                width: 150,
+                height: 150,
+                borderRadius: 150/2,
+                }}
+                resizeMode='cover'
+                source={{
+                uri: 'https://images.unsplash.com/photo-1553531580-54bcdf7bc851?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=80'
+                }}
+                />
+                </PhotoUpload>
+                
+                <Text style={styles.welcome}>username</Text>
+                <Text style={styles.about}>this is the profiles bio but does this work?</Text>
+                <Divider>Settings</Divider>
+                
+                <Button
+                style={styles.button}
+                //onPress={onPressLearnMore}
+                title="Account Settings"
+                color="#841584"
+                accessibilityLabel="Learn more about this purple button"
+                />
+                
+                </ScrollView>
+                );
+    }
 }
 
 const styles = StyleSheet.create({
