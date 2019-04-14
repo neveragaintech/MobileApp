@@ -9,7 +9,7 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, Button, Image, Dimensions, Modal, TouchableHighlight, TouchableOpacity} from 'react-native';
 import Carousel from 'react-native-snap-carousel';
-import {ENTRIES} from './SkillsEntries';
+import {ENTRIES, images} from './SkillsEntries';
 
 const { width: viewportWidth, height: viewportHeight } = Dimensions.get('window');
 
@@ -84,11 +84,13 @@ export default class SkillsCarousel extends Component {
     _renderItem ({item, index}) {
 
       const currFunct = "" + item.function
+      const currImg = images[item.illustration]
+
         return (
-            <View style={styles.slider}>
+            <View style={styles.slide}>
             <Text>{'\n'}{'\n'}{'\n'}{'\n'}{'\n'}</Text>
             <TouchableHighlight onPress={this.handlePress.bind(this, currFunct)}>
-                <Image style={styles.image} source={{uri: item.illustration}}/>
+                <Image style={styles.image} source={currImg}/>
                 </TouchableHighlight>
                 <Text style={styles.title}>{item.title}</Text>
                 <View style={styles.bottomHalf}>
@@ -286,7 +288,7 @@ var styles = StyleSheet.create({
     },
     container: {
         flex: 1,
-        backgroundColor: 'white'
+        backgroundColor: colors.background1
     },
     gradient: {
         ...StyleSheet.absoluteFillObject
@@ -303,34 +305,35 @@ var styles = StyleSheet.create({
     exampleContainerLight: {
         backgroundColor: 'white'
     },
-    // style for the rounded images
     image:{
-        width: 300,
-        height: 300,
-        borderRadius: 300/2,
+      width: 300,
+      height: 300,
+
     },
-    // style for the title of the skill
     title: {
-        marginTop: 25,
-        margin: 10,
+        paddingHorizontal: 30,
+        backgroundColor: 'white',
+        color: 'black',
         fontSize: 20,
         fontWeight: 'bold',
-        textAlign: 'center',
+        textAlign: 'center'
     },
     paragraph: {
-        fontSize: 20,
-        fontWeight: 'bold',
-        textAlign: 'center',
+        paddingHorizontal: 30,
         backgroundColor: 'white',
+        color: 'black',
+        fontSize: 12,
+        fontWeight: 'bold',
+        textAlign: 'center'
     },
-    // style for the description of the skill
+
     desc: {
-        marginHorizontal: 15,
-        fontStyle: 'italic',
-        textAlign: 'center',
-        color: '#333333',
+        paddingHorizontal: 30,
+        backgroundColor: 'white',
+        color: 'black',
         fontSize: 15,
-        marginBottom: 200,
+        fontWeight: 'bold',
+        textAlign: 'center'
     },
     titleDark: {
         color: colors.black
@@ -346,8 +349,7 @@ var styles = StyleSheet.create({
     },
     slider: {
         marginTop: 15,
-        overflow: 'visible', // for custom animations
-        backgroundColor: 'white',
+        overflow: 'visible' // for custom animations
     },
     sliderContentContainer: {
         paddingVertical: 10 // for custom animation
@@ -364,6 +366,6 @@ var styles = StyleSheet.create({
     view:{
       alignItems: 'center',
       justifyContent: 'center',
-      backgroundColor: 'white',
+
     },
 });
