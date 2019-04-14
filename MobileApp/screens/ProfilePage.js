@@ -103,13 +103,13 @@ export default class ProfilePage extends React.Component{
  <Collapsible collapsed={!this.state.notificationCol}>
 
  <Text>{this.state.switchValue ? 'Notifications are ON' : 'Notifications are OFF'}</Text>
-
+    <View style={{alignItems: 'center'}}>
                 <Switch
          style={{ marginTop: 30 }}
          onValueChange={this.toggleSwitch}
          value={this.state.switchValue}
        />
-
+       </View>
        </Collapsible>
 
 
