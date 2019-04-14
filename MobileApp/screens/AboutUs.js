@@ -57,22 +57,22 @@ export default class AboutUs extends React.Component{
                 <Text style={styles.welcome}>Never Again Tech Executive Team</Text>
                 <Text style={styles.about}>#NeverAgainTech is a project that uses technology to predict and prevent mass shootings. We wanted to take what we knew best, technology and Artificial Intelligence, and work together with teens all across the nation to advocate for what we believe.</Text>
                 
-                <Image source={{uri : 'shreya'}} style={styles.image} />
+                <Image source={images.shreya} style={styles.image} />
                 <Text style={styles.instructions}>{shreya}</Text>
                 
-                <Image source={{uri : 'gianna'}} style={styles.image} />
+                <Image source={images.gianna} style={styles.image} />
                 <Text style={styles.instructions}>{gianna}</Text>
                 
-                <Image source={{uri : 'nicole'}} style={styles.image} />
-                <Text style={styles.instructions}>{nicole}</Text>
-                
-                <Image source={{uri : 'ananya'}} style={styles.image} />
-                <Text style={styles.instructions}>{ananya}</Text>
-                
-                <Image source={{uri : 'prat'}} style={styles.image} />
+                <Image source={images.prat} style={styles.image} />
                 <Text style={styles.instructions}>{prat}</Text>
                 
-                <Image source={{uri : 'allison'}} style={styles.image} />
+                <Image source={images.ananya} style={styles.image} />
+                <Text style={styles.instructions}>{ananya}</Text>
+                
+                <Image source={images.nicole} style={styles.image} />
+                <Text style={styles.instructions}>{nicole}</Text>
+                
+                <Image source={images.allison} style={styles.image} />
                 <Text style={styles.instructions}>{allison}</Text>
                 </View>
                 </ScrollView>
@@ -122,3 +122,13 @@ const styles = StyleSheet.create({
                                  color: '#333333',
                                  },
                                  });
+
+export const images = {
+    'prat'  : require('../assets/prat.jpg'),
+    'nicole'    : require('../assets/nicole.jpg'),
+    'shreya'    : require('../assets/shreya.jpg'),
+    'ananya'    : require('../assets/ananya.jpg'),
+    'gianna'    : require('../assets/gianna.jpg'),
+    'allison'    : require('../assets/allison.jpg')
+}
+
