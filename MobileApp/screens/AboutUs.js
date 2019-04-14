@@ -48,7 +48,7 @@ const nicole = Platform.select({
 
 
 
-type Props = {};
+
 export default class AboutUs extends React.Component{
     render() {
         return (
