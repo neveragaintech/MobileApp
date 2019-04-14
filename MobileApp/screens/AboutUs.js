@@ -1,6 +1,5 @@
 import React from 'react';
 import {Platform, StyleSheet, Text, ScrollView, View, Image} from 'react-native';
-// test
 
 
 const prat = Platform.select({
