@@ -255,8 +255,8 @@ checkNewPasswords  = () => {
 
                 <Collapsible collapsed={!this.state.acctsettingsCol}>
 
-                {/* <Text>Enter New Username</Text> */}
-                <TextInput style={{width: 200}}
+                <Text>Enter New Username</Text>
+                <TextInput style={{borderWidth: 0.5, width: 200}}
                   placeholder = 'enter username...'
                   label = 'Username'
                   onChangeText = {tempUsername => this.setState({tempUsername})}
