@@ -127,24 +127,19 @@ export default class ProfilePage extends React.Component{
 checkNewPasswords  = () => {
     firebase.database().ref('/users/' + firebase.auth().currentUser.uid).on('value', (snapshot) => {
     const userObj = snapshot.val();
-    if(this.state.oldPassword != password){
-      Alert.alert("Incorrect password")
-    } else {
       if(this.state.newPassword != this.state.confirmPassword){
         Alert.alert("The new passwords do not match")
       } else {
-        //this.state.password = this.state.newPassword
-        firebase.database().ref('users/' +  firebase.auth().currentUser.uid).update(
-          {
-            Password: this.state.newPassword
-            
-          }  )
-          Alert.alert("Password has been changed")
-          this.state.oldPassword = this.state.newPassword
-          
-
+        let user = firebase.auth().currentUser;
+        user.updatePassword(this.state.newPassword).then(() => {
+                                                                                                                                                                Alert.alert("Password has been changed")
+                                                                                                                                                                                  }, (error) => {
+                                                                                                                                                                                  Alert.alert("Please try again")
+                                                                                                                                                                                  });
+          this.state.confirmPassword = ''
+          this.state.newPassword = ''
+                                                                
       }
-    }
       }
       )
 
@@ -320,13 +315,13 @@ checkNewPasswords  = () => {
                 <Collapsible collapsed={!this.state.passwordCol}>
                 <Text>Old Password: </Text>
 
-                <TextInput 
+                <TextInput
                 secureTextEntry={true} style={{borderWidth: 0.5}}
                 ref= {(el) => { oldPassword = el; }}
                 onChangeText={(oldPassword) => this.setState({oldPassword})}
                 value={this.state.oldPassword}
-                
-                
+
+
                 />
 
                 <Text>New Password: </Text>
