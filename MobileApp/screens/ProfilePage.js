@@ -16,8 +16,8 @@ import {password} from './HomeScreen'
 
 export default class ProfilePage extends React.Component{
 
-  
-  
+
+
 
   state = {
     switchValue: false,
@@ -34,7 +34,7 @@ export default class ProfilePage extends React.Component{
     confirmPassword: '',
   };
 
-  
+
 
   toggleSwitch = value => {
     //onValueChange of the switch this function will be called
@@ -91,17 +91,17 @@ export default class ProfilePage extends React.Component{
 
 
 
-  
+
 
   onChangeUsername  = () => {
     //Username = this.state.tempUsername
     //this.state.username= this.state.tempUsername
-  
+
     firebase.database().ref('users/' +  firebase.auth().currentUser.uid).update(
   {
     Username: this.state.tempUsername
     //this.state.tempUsername= this.state.username
-  } 
+  }
   )}
 
   // checkPassword  = (pass) => {
@@ -117,7 +117,7 @@ export default class ProfilePage extends React.Component{
 
   //   newPassword  = (pass) => {
   //     this.state.newPassword = pass;
-      
+
   //     }
 
   //     confirmPassword  = (pass) => {
@@ -138,20 +138,20 @@ checkNewPasswords  = () => {
                                                                                                                                                                                   });
           this.state.confirmPassword = ''
           this.state.newPassword = ''
-                                                                
+
       }
       }
       )
 
-          
+
         }
-          
+
     onChangeImage  = () => {
       firebase.database().ref('users/' +  firebase.auth().currentUser.uid).update(
     {
       Image: this.state.imageUri
       //this.state.tempUsername= this.state.username
-    }  
+    }
       )}
 
     onChangeBio = () => {
@@ -160,10 +160,10 @@ checkNewPasswords  = () => {
           Bio: this.state.bio
           //this.state.tempUsername= this.state.username
         }
-      
-            
+
+
           )
-  
+
     }
 
 
@@ -174,7 +174,7 @@ checkNewPasswords  = () => {
     //     this.state.bio = userObj.Bio;
     //     this.state.imageUri = userObj.Image;
     //   });
-      
+
     // }
 
     render() {
@@ -193,9 +193,9 @@ checkNewPasswords  = () => {
                 // {this.onChangeimage}
                 if (avatar) {
                 console.log('Image base64 string: ', avatar)
-                
+
                 }
-                
+
                 }}
                 >
                 <Image
@@ -213,8 +213,8 @@ checkNewPasswords  = () => {
                 </PhotoUpload>
 
                 {/* <Text style={{fontSize: 20}}>{this.props.username}</Text> */}
-                <Text style={styles.welcome}>{this.state.switchValue.username}</Text>  
-                
+                <Text style={styles.welcome}>{this.state.switchValue.username}</Text>
+
                 <Text style={styles.about}>{this.state.bio}</Text>
                 <Divider>Settings</Divider>
 
@@ -256,40 +256,40 @@ checkNewPasswords  = () => {
                 <Collapsible collapsed={!this.state.acctsettingsCol}>
 
                 {/* <Text>Enter New Username</Text> */}
-                <Input 
+                <TextInput style={{width: 200}}
                   placeholder = 'enter username...'
                   label = 'Username'
                   onChangeText = {tempUsername => this.setState({tempUsername})}
                   value = {this.state.tempUsername}
-          
-                />  
+
+                />
 
                 {/* <Button title="Save Username" onPress={() => this.onChangeUsername}/> */}
 
                 <TouchableOpacity
                 style={styles.deactivateButton}
                 onPress={this.onChangeUsername}
-                
+
                 >
                 {/* <TextInput style={{borderWidth: 0.5, height: 70}} multiline={true}
                 ref= {(el) => { this.tempUsername = el; }}
                 onChangeText={(tempUsername) => this.setState({tempUsername})}
                 value={this.state.tempUsername}
-                
+
                 /> */}
-                
 
-                     
 
-               <Text>Save Username</Text> 
-                
-              
-                 </TouchableOpacity> 
+
+
+               <Text>Save Username</Text>
+
+
+                 </TouchableOpacity>
 
                 <Text>Enter New Bio: </Text>
-                
 
-                <TextInput style={{borderWidth: 0.5, height: 70}} multiline={true}
+
+                <TextInput style={{borderWidth: 0.5, height: 70, width: 200}} multiline={true}
                 ref= {(el) => { this.bio = el; }}
                 onChangeText={(bio) => this.setState({bio})}
                 value={this.state.bio}
@@ -316,7 +316,7 @@ checkNewPasswords  = () => {
                 <Text>Old Password: </Text>
 
                 <TextInput
-                secureTextEntry={true} style={{borderWidth: 0.5}}
+                secureTextEntry={true} style={{borderWidth: 0.5, width: 200}}
                 ref= {(el) => { oldPassword = el; }}
                 onChangeText={(oldPassword) => this.setState({oldPassword})}
                 value={this.state.oldPassword}
@@ -326,16 +326,16 @@ checkNewPasswords  = () => {
 
                 <Text>New Password: </Text>
 
-                <TextInput 
-                secureTextEntry={true} style={{borderWidth: 0.5}}
+                <TextInput
+                secureTextEntry={true} style={{borderWidth: 0.5, width: 200}}
                 ref= {(el) => { newPassword = el; }}
                 onChangeText={(newPassword) => this.setState({newPassword})}
                 value={this.state.newPassword}
                 />
 
                 <Text>New Password Again: </Text>
-                <TextInput 
-                secureTextEntry={true} style={{borderWidth: 0.5}}
+                <TextInput
+                secureTextEntry={true} style={{borderWidth: 0.5, width: 200}}
                 ref= {(el) => { confirmPassword = el; }}
                 onChangeText={(confirmPassword) => this.setState({confirmPassword})}
                 value={this.state.confirmPassword}
@@ -366,9 +366,9 @@ checkNewPasswords  = () => {
 
                 <Text>Enter Reason for Deactivation: </Text>
 
-                <TextInput 
-                style={{borderWidth: 0.5, height: 70}} multiline={true}
-                
+                <TextInput
+                style={{borderWidth: 0.5, height: 70, width: 200}} multiline={true}
+
                 />
 
                 <TouchableOpacity
@@ -389,13 +389,13 @@ checkNewPasswords  = () => {
 
 
 
-<Text>Log out</Text> 
+<Text>Log out</Text>
 <TouchableOpacity onPress={this.onLogOutPress} />
- 
- 
- 
- </TouchableOpacity> 
-       
+
+
+
+ </TouchableOpacity>
+
 
        </View>
 </ScrollView>
@@ -403,7 +403,7 @@ checkNewPasswords  = () => {
 
 
 );
-                
+
     }
 }
 
