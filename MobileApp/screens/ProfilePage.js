@@ -104,26 +104,7 @@ export default class ProfilePage extends React.Component{
   }
   )}
 
-  // checkPassword  = (pass) => {
-  //   firebase.database().ref('/users/' + firebase.auth().currentUser.uid).on('value', (snapshot) => {
-  //         const userObj = snapshot.val();
-  //         if(pass != userObj.Password){
-  //           Alert.alert("Incorrect password")
-  //         } else {
-  //           return
-  //         }
-  //   }
-  //   )}
-
-  //   newPassword  = (pass) => {
-  //     this.state.newPassword = pass;
-
-  //     }
-
-  //     confirmPassword  = (pass) => {
-  //       this.state.confirmPassword = pass;
-  //       }
-
+  
 checkNewPasswords  = () => {
     firebase.database().ref('/users/' + firebase.auth().currentUser.uid).on('value', (snapshot) => {
     const userObj = snapshot.val();
@@ -167,21 +148,9 @@ checkNewPasswords  = () => {
     }
 
 
-    // readDataFromDatabase = () => {
-    //   firebase.database().ref('/users/' + firebase.auth().currentUser.uid).on('value', (snapshot) => {
-    //     const userObj = snapshot.val();
-    //     this.state.username = userObj.Username;
-    //     this.state.bio = userObj.Bio;
-    //     this.state.imageUri = userObj.Image;
-    //   });
-
-    // }
-
     render() {
-      var user = firebase.auth().currentUser;
-      var opass = '';
-      var npass = '';
-      var cpass = '';
+   
+
 
       //this.state.username = this.state.tempUsername
         return (
@@ -344,9 +313,6 @@ checkNewPasswords  = () => {
                 <TouchableOpacity
                 style={styles.deactivateButton}
                 onPress={this.checkNewPasswords}
-                // onPress={this.newPassword(npass)}
-                // onPress={this.confirmPassword(cpass)}
-                // onPress={this.checkNewPasswords()}
 
                 >
                 <Text>Save Password</Text>

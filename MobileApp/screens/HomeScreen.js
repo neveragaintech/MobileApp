@@ -118,7 +118,7 @@ class SignUp extends React.Component {
       this.username = userObj.Username;
       this.bio = userObj.Bio;
       this.imageUri = userObj.Image;
-      this.password = userObj.Password;
+      
     });
     
   }
@@ -135,7 +135,7 @@ class SignUp extends React.Component {
             Email: this.state.email,
             Username: this.state.username,
             Bio: this.state.bio,
-            Password: this.state.password,
+            
             ImageUri: this.state.imageUri,
     
           }
