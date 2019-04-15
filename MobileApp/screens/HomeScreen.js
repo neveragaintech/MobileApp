@@ -12,6 +12,10 @@ import * as firebase from 'firebase';
 import {Input} from './components/loginAndSignUp';
 import {LButton} from './components/LoginButtons';
 import {createStackNavigator, createAppContainer} from 'react-navigation';
+import console from 'firebase'; 
+
+
+
 
 
 
@@ -20,16 +24,42 @@ class HomeScreen extends React.Component{
   state = {
     email: '',
     password: '',
+    username: '',
+    bio: '',
+    imageUri: '',
   }
+  
   componentWillMount(){
-    const firebaseConfig = {
+    // const firebaseConfig = {
+    //   apiKey: 'AIzaSyB6qxRsyPJZccbTXBIpyQT1I6-sRrAWqj0',
+    //   authDomain: 'neveragaintech-c8590.firebaseapp.com',
+    // }
+
+    var config = {
       apiKey: 'AIzaSyB6qxRsyPJZccbTXBIpyQT1I6-sRrAWqj0',
       authDomain: 'neveragaintech-c8590.firebaseapp.com',
-    }
+      databaseURL: "https://neveragaintech-c8590.firebaseio.com/",
+      projectId: "neveragaintech-c8590",
+  };
 
-    firebase.initializeApp(firebaseConfig);
+  
+
+  if (!firebase.apps.length) {firebase.initializeApp(config);}
+    firebase.auth().onAuthStateChanged(this.onAuthStateChanged);
     
+    firebase.database().ref('users').on('value', (data) => {
+      //console.log(data.toJASON());
+    })
+    
+
+}
+
+
+  onAuthStateChanged = (user) => {
+    this.setState({isAuthenticationReady: true});
+    this.setState({isAuthenticated: !!user});
   }
+  
 
   onLoginPress = () => {
     firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
@@ -39,6 +69,7 @@ class HomeScreen extends React.Component{
           Alert.alert(error.message);
       });
   }
+
   render() {
     return (
       <View style={styles.container}>
@@ -47,6 +78,7 @@ class HomeScreen extends React.Component{
           label = 'Email'
           onChangeText = {email => this.setState({email})}
           value = {this.state.email}
+          
         />  
         <Input 
           placeholder = 'enter your password...'
@@ -56,7 +88,8 @@ class HomeScreen extends React.Component{
           value = {this.state.password}
         />  
         <LButton onPress={this.onLoginPress}>Log In</LButton> 
-        <Button title="SignUp" onPress={() => this.props.navigation.navigate('SignUp')}/>
+        <Button title="Don't have an account? Sign Up" onPress={() => this.props.navigation.navigate('SignUp')}/>
+        <Button title="Forgot Password?" onPress={() => this.props.navigation.navigate('forgotPassword')}/>
         
          
         
@@ -74,6 +107,20 @@ class SignUp extends React.Component {
     email: '',
     password: '',
     confirmPassword: '',
+    username: '',
+    bio: '',
+    imageUri: '',
+  }
+
+  readDataFromDatabase = () => {
+    firebaseApp.database().ref('/users/' + firebase.auth().currentUser.uid).on('value', (snapshot) => {
+      const userObj = snapshot.val();
+      this.username = userObj.Username;
+      this.bio = userObj.Bio;
+      this.imageUri = userObj.Image;
+      this.password = userObj.Password;
+    });
+    
   }
 
   onSignUp = () => {
@@ -82,12 +129,31 @@ class SignUp extends React.Component {
       return;
     }
     firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
-      .then(() => {
+      .then((res) => {
+        firebase.database().ref('users/' + res.user.uid).set(
+          {
+            Email: this.state.email,
+            Username: this.state.username,
+            Bio: this.state.bio,
+            Password: this.state.password,
+            ImageUri: this.state.imageUri,
+    
+          }
+        )
         this.props.navigation.navigate('ForumPage')
-      }, (error) =>{
-        Alert.alert(error.message);
-      });
+      })
+        // }) ((error) => {
+        //   Alert.alert(error.message);
+        // });
   }
+
+  handleEmail = (text) => {
+    this.setState({email: text })
+ }
+
+ handlePassword = (text) => {
+  this.setState({ password: text })
+}
 
   render() {
     
@@ -98,14 +164,14 @@ class SignUp extends React.Component {
         <Input 
           placeholder = 'enter your email...'
           label = 'Email'
-          onChangeText = {email => this.setState({email})}
+          onChangeText =  {this.handleEmail} //{email => this.setState({email})}
           value = {this.state.email}
         />
         <Input 
           placeholder = 'enter your password...'
           label = 'Password'
           secureTextEntry
-          onChangeText = {password => this.setState({password})}
+          onChangeText =  {this.handlePassword} //{password => this.setState({password})}
           value = {this.state.password}
         /> 
         <Input
@@ -116,6 +182,39 @@ class SignUp extends React.Component {
           value = {this.state.confirmPassword}
         />   
         <LButton onPress={this.onSignUp}>Sign In</LButton>
+      </View>
+    );
+  }
+
+  
+}
+
+class forgotPassword extends React.Component {
+  state = {
+    email: '',
+  }
+  
+  onResetPassword = () => {
+    firebase.auth().sendPasswordResetEmail(this.state.email)
+    .then(() => {
+      Alert.alert("Password email has been sent");
+    }, (error) => {
+      Alert.alert(error.message);
+    });
+  }
+
+
+  render() {
+
+    return (
+      <View style={styles.container}>
+        <Input 
+          placeholder = 'enter your email...'
+          label = 'Email'
+          onChangeText = {email => this.setState({email})}
+          value = {this.state.email}
+        />
+        <LButton onPress={this.onResetPassword}>Reset Password</LButton>
       </View>
     );
   }
@@ -132,7 +231,8 @@ const styles = StyleSheet.create({
 
 const navi = createStackNavigator({
   Home: HomeScreen,
-  SignUp: SignUp
+  SignUp: SignUp,
+  forgotPassword: forgotPassword
 })
 
 const container = createAppContainer(navi);

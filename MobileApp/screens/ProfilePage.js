@@ -5,11 +5,19 @@ import PhotoUpload from 'react-native-photo-upload'
 import ImagePicker from 'react-native-image-picker';
 import LinearGradient from 'react-native-linear-gradient';
 import Collapsible from 'react-native-collapsible';
-//import { Button } from 'react-native-elements';
-import {Platform, StyleSheet, Text, View, ScrollView, Button, Image, TouchableOpacity, Switch, TextInput} from 'react-native';
+import * as firebase from 'firebase';
+import {Input} from './components/loginAndSignUp';
+import {createStackNavigator, createAppContainer} from 'react-navigation';
+import {Platform, StyleSheet, Text, View, ScrollView, Button, Image, TouchableOpacity, Switch, TextInput, Alert} from 'react-native';
+import { breakStatement } from '@babel/types';
+import {password} from './HomeScreen'
+//import {username} from './HomeScreen'
 
-type Props = {};
+
 export default class ProfilePage extends React.Component{
+
+  
+  
 
   state = {
     switchValue: false,
@@ -17,7 +25,16 @@ export default class ProfilePage extends React.Component{
     acctsettingsCol: false,
     passwordCol: false,
     deactivateCol: false,
+    username: '',
+    imageUri: 'https://images.unsplash.com/photo-1553531580-54bcdf7bc851?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=80',
+    tempUsername: '',
+    bio: '',
+    oldPassword: '',
+    newPassword: '',
+    confirmPassword: '',
   };
+
+  
 
   toggleSwitch = value => {
     //onValueChange of the switch this function will be called
@@ -57,15 +74,133 @@ export default class ProfilePage extends React.Component{
     this.setState({ deactivateCol: !currVal });
 
   };
+
+  onLogOutPress = () => {
+    firebase.auth().signOut();
+    this.props.navigation.navigate('HomeScreen')
+
+  }
+
+  onDeleteAccount = () => {
+    firebase.auth().currentUser.delete()
+    firebase.database().ref('users/' +  firebase.auth().currentUser.uid).remove();
+    Alert.alert("Your account has been deleted.")
+    this.props.navigation.navigate('HomeScreen')
+
+  }
+
+
+
+  
+
+  onChangeUsername  = () => {
+    //Username = this.state.tempUsername
+    //this.state.username= this.state.tempUsername
+  
+    firebase.database().ref('users/' +  firebase.auth().currentUser.uid).update(
+  {
+    Username: this.state.tempUsername
+    //this.state.tempUsername= this.state.username
+  } 
+  )}
+
+  // checkPassword  = (pass) => {
+  //   firebase.database().ref('/users/' + firebase.auth().currentUser.uid).on('value', (snapshot) => {
+  //         const userObj = snapshot.val();
+  //         if(pass != userObj.Password){
+  //           Alert.alert("Incorrect password")
+  //         } else {
+  //           return
+  //         }
+  //   }
+  //   )}
+
+  //   newPassword  = (pass) => {
+  //     this.state.newPassword = pass;
+      
+  //     }
+
+  //     confirmPassword  = (pass) => {
+  //       this.state.confirmPassword = pass;
+  //       }
+
+checkNewPasswords  = () => {
+    firebase.database().ref('/users/' + firebase.auth().currentUser.uid).on('value', (snapshot) => {
+    const userObj = snapshot.val();
+    if(this.state.oldPassword != password){
+      Alert.alert("Incorrect password")
+    } else {
+      if(this.state.newPassword != this.state.confirmPassword){
+        Alert.alert("The new passwords do not match")
+      } else {
+        //this.state.password = this.state.newPassword
+        firebase.database().ref('users/' +  firebase.auth().currentUser.uid).update(
+          {
+            Password: this.state.newPassword
+            
+          }  )
+          Alert.alert("Password has been changed")
+          this.state.oldPassword = this.state.newPassword
+          
+
+      }
+    }
+      }
+      )
+
+          
+        }
+          
+    onChangeImage  = () => {
+      firebase.database().ref('users/' +  firebase.auth().currentUser.uid).update(
+    {
+      Image: this.state.imageUri
+      //this.state.tempUsername= this.state.username
+    }  
+      )}
+
+    onChangeBio = () => {
+      firebase.database().ref('users/' +  firebase.auth().currentUser.uid).update(
+        {
+          Bio: this.state.bio
+          //this.state.tempUsername= this.state.username
+        }
+      
+            
+          )
+  
+    }
+
+
+    // readDataFromDatabase = () => {
+    //   firebase.database().ref('/users/' + firebase.auth().currentUser.uid).on('value', (snapshot) => {
+    //     const userObj = snapshot.val();
+    //     this.state.username = userObj.Username;
+    //     this.state.bio = userObj.Bio;
+    //     this.state.imageUri = userObj.Image;
+    //   });
+      
+    // }
+
     render() {
+      var user = firebase.auth().currentUser;
+      var opass = '';
+      var npass = '';
+      var cpass = '';
+
+      //this.state.username = this.state.tempUsername
         return (
                 <ScrollView>
 
                 <PhotoUpload
                 onPhotoSelect={avatar => {
+                // imageUri = ImagePicker.avatar.uri
+                // {this.onChangeimage}
                 if (avatar) {
                 console.log('Image base64 string: ', avatar)
+                
                 }
+                
                 }}
                 >
                 <Image
@@ -82,8 +217,10 @@ export default class ProfilePage extends React.Component{
                 />
                 </PhotoUpload>
 
-                <Text style={styles.welcome}>username</Text>
-                <Text style={styles.about}>this is the profiles bio but does this work?</Text>
+                {/* <Text style={{fontSize: 20}}>{this.props.username}</Text> */}
+                <Text style={styles.welcome}>{this.state.switchValue.username}</Text>  
+                
+                <Text style={styles.about}>{this.state.bio}</Text>
                 <Divider>Settings</Divider>
 
                 <View style={{flex: 1, alignItems: 'center'}}>
@@ -123,23 +260,49 @@ export default class ProfilePage extends React.Component{
 
                 <Collapsible collapsed={!this.state.acctsettingsCol}>
 
-                <Text>Enter New Username</Text>
+                {/* <Text>Enter New Username</Text> */}
+                <Input 
+                  placeholder = 'enter username...'
+                  label = 'Username'
+                  onChangeText = {tempUsername => this.setState({tempUsername})}
+                  value = {this.state.tempUsername}
+          
+                />  
 
-                <TextInput style={{borderWidth: 0.5, height: 35}} multiline={false}/>
+                {/* <Button title="Save Username" onPress={() => this.onChangeUsername}/> */}
 
                 <TouchableOpacity
                 style={styles.deactivateButton}
-
+                onPress={this.onChangeUsername}
+                
                 >
-                <Text>Save Username</Text>
-                </TouchableOpacity>
+                {/* <TextInput style={{borderWidth: 0.5, height: 70}} multiline={true}
+                ref= {(el) => { this.tempUsername = el; }}
+                onChangeText={(tempUsername) => this.setState({tempUsername})}
+                value={this.state.tempUsername}
+                
+                /> */}
+                
+
+                     
+
+               <Text>Save Username</Text> 
+                
+              
+                 </TouchableOpacity> 
 
                 <Text>Enter New Bio: </Text>
+                
 
-                <TextInput style={{borderWidth: 0.5, height: 70}} multiline={true}/>
+                <TextInput style={{borderWidth: 0.5, height: 70}} multiline={true}
+                ref= {(el) => { this.bio = el; }}
+                onChangeText={(bio) => this.setState({bio})}
+                value={this.state.bio}
+                />
 
                 <TouchableOpacity
                 style={styles.deactivateButton}
+                onPress={this.onChangeBio}
 
                 >
                 <Text>Save Bio</Text>
@@ -157,19 +320,38 @@ export default class ProfilePage extends React.Component{
                 <Collapsible collapsed={!this.state.passwordCol}>
                 <Text>Old Password: </Text>
 
-                <TextInput secureTextEntry={true} style={{borderWidth: 0.5}}/>
+                <TextInput 
+                secureTextEntry={true} style={{borderWidth: 0.5}}
+                ref= {(el) => { oldPassword = el; }}
+                onChangeText={(oldPassword) => this.setState({oldPassword})}
+                value={this.state.oldPassword}
+                
+                
+                />
 
                 <Text>New Password: </Text>
 
-                <TextInput secureTextEntry={true} style={{borderWidth: 0.5}}/>
+                <TextInput 
+                secureTextEntry={true} style={{borderWidth: 0.5}}
+                ref= {(el) => { newPassword = el; }}
+                onChangeText={(newPassword) => this.setState({newPassword})}
+                value={this.state.newPassword}
+                />
 
                 <Text>New Password Again: </Text>
-
-
-                <TextInput secureTextEntry={true} style={{borderWidth: 0.5}}/>
+                <TextInput 
+                secureTextEntry={true} style={{borderWidth: 0.5}}
+                ref= {(el) => { confirmPassword = el; }}
+                onChangeText={(confirmPassword) => this.setState({confirmPassword})}
+                value={this.state.confirmPassword}
+                />
 
                 <TouchableOpacity
                 style={styles.deactivateButton}
+                onPress={this.checkNewPasswords}
+                // onPress={this.newPassword(npass)}
+                // onPress={this.confirmPassword(cpass)}
+                // onPress={this.checkNewPasswords()}
 
                 >
                 <Text>Save Password</Text>
@@ -182,17 +364,21 @@ export default class ProfilePage extends React.Component{
                 onPress={this.openDeactivate}
 
                 >
-                <Text>Deactivate Account</Text>
+                <Text>Delete Account</Text>
                 </TouchableOpacity>
 
                 <Collapsible collapsed={!this.state.deactivateCol}>
 
                 <Text>Enter Reason for Deactivation: </Text>
 
-                <TextInput style={{borderWidth: 0.5, height: 70}} multiline={true}/>
+                <TextInput 
+                style={{borderWidth: 0.5, height: 70}} multiline={true}
+                
+                />
 
                 <TouchableOpacity
                 style={styles.deactivateButton}
+                onPress={this.onDeleteAccount}
 
                 >
                 <Text>Confirm Deactivation</Text>
@@ -202,15 +388,27 @@ export default class ProfilePage extends React.Component{
 
                 <TouchableOpacity
                 style={styles.button}
-                //onPress={onPressLearnMore}
+                onPress={this.onLogOutPress}
 
                 >
-                <Text>Log Out</Text>
-                </TouchableOpacity>
 
-                </View>
-                </ScrollView>
-                );
+
+
+<Text>Log out</Text> 
+<TouchableOpacity onPress={this.onLogOutPress} />
+ 
+ 
+ 
+ </TouchableOpacity> 
+       
+
+       </View>
+</ScrollView>
+
+
+
+);
+                
     }
 }
 
