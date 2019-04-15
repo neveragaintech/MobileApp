@@ -5,49 +5,39 @@ import {Platform, StyleSheet, Text, ScrollView, View, Image} from 'react-native'
 const prat = Platform.select({
                              ios: 'Prathyusha Pillari\n' + 'Director of App Development',
                              android:
-                             'Double tap R on your keyboard to reload,\n' +
-                             'Shake or press menu button for dev menu',
+                             'Prathyusha Pillari\n' + 'Director of App Development',
                              });
 
 const shreya = Platform.select({
                                ios: 'Shreya Nallapati\n' + 'Founder/ Executive Director',
                                android:
-                               'Double tap R on your keyboard to reload,\n' +
-                               'Shake or press menu button for dev menu',
+                               'Shreya Nallapati\n' + 'Founder/ Executive Director',
                                });
 
 
 const ananya = Platform.select({
                                ios: 'Ananya Cleetus\n' + 'Director of Mental Health',
                                android:
-                               'Double tap R on your keyboard to reload,\n' +
-                               'Shake or press menu button for dev menu',
+                               'Ananya Cleetus\n' + 'Director of Mental Health',
                                });
 
 const allison = Platform.select({
                                 ios: 'Allison Liu\n' + 'Director of Web Development',
                                 android:
-                                'Double tap R on your keyboard to reload,\n' +
-                                'Shake or press menu button for dev menu',
+                                'Allison Liu\n' + 'Director of Web Development',
                                 });
 
 const gianna = Platform.select({
                                ios: 'Gianna Williams\n' + 'Director of Social Advocacy',
                                android:
-                               'Double tap R on your keyboard to reload,\n' +
-                               'Shake or press menu button for dev menu',
+                               'Gianna Williams\n' + 'Director of Social Advocacy',
                                });
 
 const nicole = Platform.select({
                                ios: 'Nicole Meister\n' + 'Director of Data Analytics',
                                android:
-                               'Double tap R on your keyboard to reload,\n' +
-                               'Shake or press menu button for dev menu',
+                               'Nicole Meister\n' + 'Director of Data Analytics',
                                });
-
-
-
-
 
 export default class AboutUs extends React.Component{
     render() {

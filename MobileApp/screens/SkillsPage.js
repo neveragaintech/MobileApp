@@ -77,7 +77,7 @@ export default class SkillsCarousel extends Component {
       Alert.alert("MODAL NOT FOUND");
 
     }
-      }
+}
 
 
 
