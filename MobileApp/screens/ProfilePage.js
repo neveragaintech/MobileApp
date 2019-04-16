@@ -25,7 +25,7 @@ export default class ProfilePage extends React.Component{
     passwordCol: false,
     deactivateCol: false,
     username: '',
-    imageUri: 'https://images.unsplash.com/photo-1553531580-54bcdf7bc851?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=80',
+    imageUri: '',
     tempUsername: '',
     tempBio: '',
     bio: '',
@@ -180,7 +180,7 @@ checkNewPasswords  = () => {
                 // {this.onChangeimage}
                 if (avatar) {
                   this.state.imageUri = avatar
-                  {this.onChangeimage}
+                  {this.onChangeimage()}
                   console.log('Image base64 string: ', avatar)
 
                 }

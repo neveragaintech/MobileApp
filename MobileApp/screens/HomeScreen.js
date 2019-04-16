@@ -109,7 +109,7 @@ class SignUp extends React.Component {
     confirmPassword: '',
     username: 'NATuser',
     bio: 'Hello there!',
-    imageUri: '',
+    imageUri: 'https://images.unsplash.com/photo-1553531580-54bcdf7bc851?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=80',
   }
 
   readDataFromDatabase = () => {
