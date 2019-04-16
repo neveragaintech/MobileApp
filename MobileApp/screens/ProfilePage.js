@@ -10,8 +10,7 @@ import {Input} from './components/loginAndSignUp';
 import {createStackNavigator, createAppContainer} from 'react-navigation';
 import {Platform, StyleSheet, Text, View, ScrollView, Button, Image, TouchableOpacity, Switch, TextInput, Alert} from 'react-native';
 import { breakStatement } from '@babel/types';
-import {password} from './HomeScreen'
-//import {username} from './HomeScreen'
+
 
 
 export default class ProfilePage extends React.Component{
@@ -282,7 +281,7 @@ checkNewPasswords  = () => {
                 </TouchableOpacity>
 
                 <Collapsible collapsed={!this.state.passwordCol}>
-                <Text>Old Password: </Text>
+                {/* <Text>Old Password: </Text>
 
                 <TextInput
                 secureTextEntry={true} style={{borderWidth: 0.5, width: 200}}
@@ -291,7 +290,7 @@ checkNewPasswords  = () => {
                 value={this.state.oldPassword}
 
 
-                />
+                /> */}
 
                 <Text>New Password: </Text>
 
