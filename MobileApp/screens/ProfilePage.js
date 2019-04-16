@@ -28,11 +28,23 @@ export default class ProfilePage extends React.Component{
     username: '',
     imageUri: 'https://images.unsplash.com/photo-1553531580-54bcdf7bc851?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=80',
     tempUsername: '',
+    tempBio: '',
     bio: '',
     oldPassword: '',
     newPassword: '',
     confirmPassword: '',
   };
+    
+    readDataFromDatabase = () => {
+        firebaseApp.database().ref('/users/' + firebase.auth().currentUser.uid).on('value', (snapshot) => {
+                                                                                   const userObj = snapshot.val();
+                                                                                   this.username = userObj.Username;
+                                                                                   this.bio = userObj.Bio;
+                                                                                   this.imageUri = userObj.Image;
+                                                                                   
+                                                                                   });
+        
+    };
 
 
 
@@ -94,15 +106,13 @@ export default class ProfilePage extends React.Component{
 
 
   onChangeUsername  = () => {
-    //Username = this.state.tempUsername
-    //this.state.username= this.state.tempUsername
-
-    firebase.database().ref('users/' +  firebase.auth().currentUser.uid).update(
-  {
+    this.state.username = this.state.tempUsername
+    firebase.database().ref('users/' +  firebase.auth().currentUser.uid).update({
     Username: this.state.tempUsername
-    //this.state.tempUsername= this.state.username
+  })
+    this.setState({username: this.state.username});
+    this.state.tempUsername = ''
   }
-  )}
 
   
 checkNewPasswords  = () => {
@@ -136,6 +146,8 @@ checkNewPasswords  = () => {
       )}
 
     onChangeBio = () => {
+        this.state.bio = this.state.tempBio
+        this.state.tempBio = ''
       firebase.database().ref('users/' +  firebase.auth().currentUser.uid).update(
         {
           Bio: this.state.bio
@@ -145,6 +157,11 @@ checkNewPasswords  = () => {
 
           )
 
+    }
+    
+    
+    tryingUsername = () => {
+        <Text style={styles.welcome}>{this.state.username}</Text>
     }
 
 
@@ -156,6 +173,7 @@ checkNewPasswords  = () => {
         return (
                 <ScrollView>
 
+                readDataFromDatabase()
                 <PhotoUpload
                 onPhotoSelect={avatar => {
                 // imageUri = ImagePicker.avatar.uri
@@ -182,7 +200,7 @@ checkNewPasswords  = () => {
                 </PhotoUpload>
 
                 {/* <Text style={{fontSize: 20}}>{this.props.username}</Text> */}
-                <Text style={styles.welcome}>{this.state.switchValue.username}</Text>
+                <Text style={styles.welcome}>{this.state.username}</Text>
 
                 <Text style={styles.about}>{this.state.bio}</Text>
                 <Divider>Settings</Divider>
@@ -230,7 +248,6 @@ checkNewPasswords  = () => {
                   label = 'Username'
                   onChangeText = {tempUsername => this.setState({tempUsername})}
                   value = {this.state.tempUsername}
-
                 />
 
                 {/* <Button title="Save Username" onPress={() => this.onChangeUsername}/> */}
@@ -259,9 +276,9 @@ checkNewPasswords  = () => {
 
 
                 <TextInput style={{borderWidth: 0.5, height: 70, width: 200}} multiline={true}
-                ref= {(el) => { this.bio = el; }}
-                onChangeText={(bio) => this.setState({bio})}
-                value={this.state.bio}
+                ref= {(el) => { this.tempBio = el; }}
+                onChangeText={(tempBio) => this.setState({tempBio})}
+                value={this.state.tempBio}
                 />
 
                 <TouchableOpacity
