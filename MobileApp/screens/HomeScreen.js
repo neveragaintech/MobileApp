@@ -107,8 +107,8 @@ class SignUp extends React.Component {
     email: '',
     password: '',
     confirmPassword: '',
-    username: '',
-    bio: '',
+    username: 'NATuser',
+    bio: 'Hello there!',
     imageUri: '',
   }
 
