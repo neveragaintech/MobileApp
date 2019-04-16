@@ -35,10 +35,10 @@ export default class ProfilePage extends React.Component{
   };
     
     readDataFromDatabase = () => {
-        firebaseApp.database().ref('/users/' + firebase.auth().currentUser.uid).on('value', (snapshot) => {
+        firebase.database().ref('/users/' + firebase.auth().currentUser.uid).on('value', (snapshot) => {
                                                                                    const userObj = snapshot.val();
-                                                                                   this.username = userObj.Username;
-                                                                                   this.bio = userObj.Bio;
+                                                                                   this.state.username = userObj.Username;
+                                                                                   this.state.bio = userObj.Bio;
                                                                                    this.imageUri = userObj.Image;
                                                                                    
                                                                                    });
@@ -146,7 +146,6 @@ checkNewPasswords  = () => {
 
     onChangeBio = () => {
         this.state.bio = this.state.tempBio
-        this.state.tempBio = ''
       firebase.database().ref('users/' +  firebase.auth().currentUser.uid).update(
         {
           Bio: this.state.bio
@@ -155,6 +154,8 @@ checkNewPasswords  = () => {
 
 
           )
+          this.setState({bio: this.state.bio});
+          this.state.tempBio = ''
 
     }
     
@@ -167,12 +168,12 @@ checkNewPasswords  = () => {
     render() {
    
 
-
+      {this.readDataFromDatabase()}
       //this.state.username = this.state.tempUsername
         return (
                 <ScrollView>
 
-                readDataFromDatabase()
+                
                 <PhotoUpload
                 onPhotoSelect={avatar => {
                 // imageUri = ImagePicker.avatar.uri
