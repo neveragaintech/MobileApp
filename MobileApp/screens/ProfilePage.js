@@ -139,7 +139,7 @@ checkNewPasswords  = () => {
     onChangeImage  = () => {
       firebase.database().ref('users/' +  firebase.auth().currentUser.uid).update(
     {
-      Image: this.state.imageUri
+      ImageUri: this.state.imageUri
       //this.state.tempUsername= this.state.username
     }
       )}
@@ -179,9 +179,12 @@ checkNewPasswords  = () => {
                 // imageUri = ImagePicker.avatar.uri
                 // {this.onChangeimage}
                 if (avatar) {
-                console.log('Image base64 string: ', avatar)
+                  this.state.imageUri = avatar
+                  {this.onChangeimage}
+                  console.log('Image base64 string: ', avatar)
 
                 }
+
 
                 }}
                 >
