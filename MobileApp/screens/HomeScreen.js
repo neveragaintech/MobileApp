@@ -109,7 +109,7 @@ class SignUp extends React.Component {
     confirmPassword: '',
     username: 'NAT-user',
     bio: 'Hello there! Welcome to my profile!',
-    imageUri: 'https://images.unsplash.com/photo-1553531580-54bcdf7bc851?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=80',
+    imageUri: require('../assets/logo.jpg'),
   }
 
   readDataFromDatabase = () => {
@@ -233,6 +233,10 @@ const navi = createStackNavigator({
   SignUp: SignUp,
   forgotPassword: forgotPassword
 })
+
+export const images = {
+    'logo'  : require('../assets/logo.jpg'),
+}
 
 const container = createAppContainer(navi);
 export default container; 

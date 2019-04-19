@@ -39,31 +39,44 @@ const nicole = Platform.select({
                                'Nicole Meister\n' + 'Director of Data Analytics',
                                });
 
+const kundana = Platform.select({
+                               ios: 'Kundana Pillari\n' + 'Software Engineer',
+                               android:
+                               'Kundana Pillari\n' + 'Software Engineer',
+                               });
+
 export default class AboutUs extends React.Component{
     render() {
         return (
                 <ScrollView>
                 <View style={styles.container}>
-                <Text style={styles.welcome}>Never Again Tech Executive Team</Text>
-                <Text style={styles.about}>#NeverAgainTech is a project that uses technology to predict and prevent mass shootings. We wanted to take what we knew best, technology and Artificial Intelligence, and work together with teens all across the nation to advocate for what we believe.</Text>
                 
-                <Image source={images.shreya} style={styles.image} />
-                <Text style={styles.instructions}>{shreya}</Text>
+                <Text style={styles.welcome}>Never Again Tech</Text>
+                <Text style={styles.about}>This app, built by Neveragaintech, aims to help survivors and victims of gun violence treat the emotional trauma/PTSD effects of these horrific incidents. This app aims to create acceptance and reduce the stigma of PTSD with its forum and journal pages, where survivors can share their experiences and feelings with regards to hyper vigilance, survivors guilt, and fear among other things. The skills page focuses on coping strategies for survivors such as grounding and art therapy, and provides them in an accessible mobile format for immediate response in situations where certain memories are triggered. We are developing a page where survivors are connected to the closest trauma recovery psychologists in their area. Our mission is to dispel the stigma around PTSD/mental health effects of gun violence by providing building support communities and having resources at fingertips.</Text>
                 
-                <Image source={images.gianna} style={styles.image} />
-                <Text style={styles.instructions}>{gianna}</Text>
+                <Text style={styles.welcome}>Mobile Development Team</Text>
+                //<Text style={styles.about}>#NeverAgainTech is a project that uses technology to predict and prevent mass shootings. We wanted to take what we knew best, technology and Artificial Intelligence, and work together with teens all across the nation to advocate for what we believe.</Text>
                 
+//                <Image source={images.shreya} style={styles.image} />
+//                <Text style={styles.instructions}>{shreya}</Text>
+//
+//                <Image source={images.gianna} style={styles.image} />
+//                <Text style={styles.instructions}>{gianna}</Text>
+//
                 <Image source={images.prat} style={styles.image} />
                 <Text style={styles.instructions}>{prat}</Text>
+                
+                <Image source={images.kundana} style={styles.image} />
+                <Text style={styles.instructions}>{kundana}</Text>
                 
                 <Image source={images.ananya} style={styles.image} />
                 <Text style={styles.instructions}>{ananya}</Text>
                 
-                <Image source={images.nicole} style={styles.image} />
-                <Text style={styles.instructions}>{nicole}</Text>
-                
-                <Image source={images.allison} style={styles.image} />
-                <Text style={styles.instructions}>{allison}</Text>
+//                <Image source={images.nicole} style={styles.image} />
+//                <Text style={styles.instructions}>{nicole}</Text>
+//
+//                <Image source={images.allison} style={styles.image} />
+//                <Text style={styles.instructions}>{allison}</Text>
                 </View>
                 </ScrollView>
         );
@@ -119,6 +132,7 @@ export const images = {
     'shreya'    : require('../assets/shreya.jpg'),
     'ananya'    : require('../assets/ananya.jpg'),
     'gianna'    : require('../assets/gianna.jpg'),
-    'allison'    : require('../assets/allison.jpg')
+    'allison'    : require('../assets/allison.jpg'),
+    'kundana'    : require('../assets/kundana.jpg')
 }
 

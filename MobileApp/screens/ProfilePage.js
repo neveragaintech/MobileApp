@@ -197,7 +197,7 @@ checkNewPasswords  = () => {
                 }}
                 resizeMode='cover'
                 source={{
-                uri: 'https://images.unsplash.com/photo-1553531580-54bcdf7bc851?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=80'
+                uri: 'https://images.unsplash.com/photo-1555529211-3237f6e13d33?ixlib=rb-1.2.1&auto=format&fit=crop&w=947&q=80' //require('../assets/logo.jpg').toString()
                 }}
                 />
                 </PhotoUpload>
@@ -368,7 +368,7 @@ checkNewPasswords  = () => {
                 </Collapsible>
 
                 <TouchableOpacity
-                style={{color: '#808080'}}
+                style={styles.logOutButton}
                 onPress={this.onLogOutPress}
 
                 >
@@ -427,6 +427,17 @@ const styles = StyleSheet.create({
                                  width: 50,
                                  height: 50,
                                  borderRadius: 50/2,
+                                 },
+                                 logOutButton: {
+                                 backgroundColor: '#626F78',
+                                 marginTop:10,
+                                 height:45,
+                                 flexDirection: 'row',
+                                 justifyContent: 'center',
+                                 alignItems: 'center',
+                                 marginBottom:20,
+                                 width:250,
+                                 borderRadius:30,
                                  },
                                  buttonText: {
                                  color: 'white',
