@@ -107,8 +107,8 @@ class SignUp extends React.Component {
     email: '',
     password: '',
     confirmPassword: '',
-    username: 'NATuser',
-    bio: 'Hello there!',
+    username: 'NAT-user',
+    bio: 'Hello there! Welcome to my profile!',
     imageUri: 'https://images.unsplash.com/photo-1553531580-54bcdf7bc851?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=80',
   }
 
@@ -162,20 +162,20 @@ class SignUp extends React.Component {
     return (
       <View style={styles.container}>
         <Input 
-          placeholder = 'enter your email...'
+          placeholder = 'enter your email'
           label = 'Email'
           onChangeText =  {this.handleEmail} //{email => this.setState({email})}
           value = {this.state.email}
         />
         <Input 
-          placeholder = 'enter your password...'
+          placeholder = 'enter your password'
           label = 'Password'
           secureTextEntry
           onChangeText =  {this.handlePassword} //{password => this.setState({password})}
           value = {this.state.password}
         /> 
         <Input
-          placeholder = 'confirm password...'
+          placeholder = 'confirm password'
           label = 'Confirm  Password'
           secureTextEntry
           onChangeText = {confirmPassword => this.setState({confirmPassword})}
@@ -209,7 +209,7 @@ class forgotPassword extends React.Component {
     return (
       <View style={styles.container}>
         <Input 
-          placeholder = 'enter your email...'
+          placeholder = 'enter your email'
           label = 'Email'
           onChangeText = {email => this.setState({email})}
           value = {this.state.email}
@@ -224,7 +224,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    
   },
   
 });

@@ -12,16 +12,20 @@ const LButton = ({ onPress, children }) => {
 
 const styles = StyleSheet.create({
     button: {
-        marginTop: 10,
-        padding: 20,
-        width: '100%',
-        backgroundColor: '#00aeef',
-        borderRadius: 4,
+                                 marginTop:15,
+                                 height:45,
+                                 flexDirection: 'column',
+                                 justifyContent: 'center',
+                                 marginBottom:15,
+                                 width:250,
+                                 marginHorizontal: 45,
+                                 borderRadius:30,
+                                 backgroundColor: "#734F96",
         alignItems: 'center',
     },
     text: {
         color: 'white',
-        fontWeight: '700',
+        fontWeight: '500',
         fontSize: 18,
     }
 })

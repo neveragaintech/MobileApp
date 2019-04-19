@@ -219,7 +219,7 @@ checkNewPasswords  = () => {
  onPress={this.openNotifs}
 
  >
- <Text>Notifications</Text>
+<Text style={styles.buttonText}>Notifications</Text>
  </TouchableOpacity>
 
  <Collapsible collapsed={!this.state.notificationCol}>
@@ -240,7 +240,7 @@ checkNewPasswords  = () => {
                 onPress={this.openAcctSettings}
 
                 >
-                <Text>Account Settings</Text>
+                <Text style={styles.buttonText}>Account Settings</Text>
                 </TouchableOpacity>
 
                 <Collapsible collapsed={!this.state.acctsettingsCol}>
@@ -298,7 +298,7 @@ checkNewPasswords  = () => {
                 onPress={this.openPassword}
 
                 >
-                <Text>Change Password</Text>
+                <Text style={styles.buttonText}>Change Password</Text>
                 </TouchableOpacity>
 
                 <Collapsible collapsed={!this.state.passwordCol}>
@@ -345,12 +345,12 @@ checkNewPasswords  = () => {
                 onPress={this.openDeactivate}
 
                 >
-                <Text>Delete Account</Text>
+                <Text style={styles.buttonText}>Delete Account</Text>
                 </TouchableOpacity>
 
                 <Collapsible collapsed={!this.state.deactivateCol}>
 
-                <Text>Enter Reason for Deactivation: </Text>
+                <Text>Enter Reason for deleting your account: </Text>
 
                 <TextInput
                 style={{borderWidth: 0.5, height: 70, width: 200}} multiline={true}
@@ -368,14 +368,14 @@ checkNewPasswords  = () => {
                 </Collapsible>
 
                 <TouchableOpacity
-                style={styles.button}
+                style={{color: '#808080'}}
                 onPress={this.onLogOutPress}
 
                 >
 
 
 
-<Text>Log out</Text>
+<Text style={styles.buttonText}>Log out</Text>
 <TouchableOpacity onPress={this.onLogOutPress} />
 
 
@@ -428,6 +428,10 @@ const styles = StyleSheet.create({
                                  height: 50,
                                  borderRadius: 50/2,
                                  },
+                                 buttonText: {
+                                 color: 'white',
+                                 fontWeight: 'bold',
+                                 },
                                  about: {
                                  marginTop: 15,
                                  marginBottom: 25,
@@ -444,7 +448,7 @@ const styles = StyleSheet.create({
          marginBottom:20,
          width:250,
          borderRadius:30,
-         backgroundColor: "#00BFFF",
+         backgroundColor: "#734F96",
        },
 
 
