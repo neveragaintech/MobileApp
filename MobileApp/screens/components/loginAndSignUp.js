@@ -19,8 +19,10 @@ const Input = ({label, value, onChangeText, placeholder, secureTextEntry }) => {
 
 const styles = StyleSheet.create({
     container: {
-        marginTop: 10,
+        //marginTop: 10,
         width: '100%',
+                                 justifyContent: 'space-evenly',
+                                 alignItems: 'center',
         borderColor: '#eee',
         borderBottomWidth: 3,
     },
