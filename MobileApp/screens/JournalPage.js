@@ -7,16 +7,22 @@
  */
 
 import React from 'react';
-import {Platform, StyleSheet, Text, View, Button, Image} from 'react-native';
+import {Platform, StyleSheet, Text, View, Button, Image, Alert, Modal, TouchableOpacity} from 'react-native';
+import {CalendarList} from 'react-native-calendars';
 
 
 type Props = {};
 export default class JournalPage extends React.Component{
   render() {
     return (
-      <View>
-            <Text style={styles.welcome}>Coming Soon!</Text>
-            <Text style={styles.about}>The Personal Journal page will be a space where you will be able to gather your thoughts and write everyday journals.</Text>
+      <View style={styles.container}>
+            <CalendarList
+            pagingEnabled={true}
+            hideArrows={true}
+            horizontal={true}
+            // Set custom calendarWidth.
+            calendarWidth={375}
+            />
       </View>
     );
   }
@@ -25,12 +31,12 @@ export default class JournalPage extends React.Component{
 const styles = StyleSheet.create({
                                  container: {
                                  flex: 1,
-                                 marginTop: 75,
+                                 marginTop: 50,
                                  //marginBottom: 50,
                                  flexDirection: 'row',
                                  flexWrap: 'wrap',
                                  justifyContent: 'space-evenly',
-                                 alignItems: 'center',
+                                 //alignItems: 'center',
                                  //backgroundColor: '#F5FCFF',
                                  backgroundColor: 'white',
                                  },
@@ -38,8 +44,8 @@ const styles = StyleSheet.create({
                                  fontSize: 20,
                                  fontWeight: 'bold',
                                  textAlign: 'center',
-                                 //marginBottom: 5,
-                                 marginTop: 325,
+                                 marginBottom: 5,
+                                 //marginTop: 325,
                                  },
                                  instructions: {
                                  textAlign: 'center',
