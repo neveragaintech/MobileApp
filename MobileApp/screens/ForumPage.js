@@ -7,61 +7,123 @@
  */
 
 import React from 'react';
-import {Platform, StyleSheet, Text, View, Button, Image} from 'react-native';
+import {SafeAreaView, TextInput, TouchableOpacity, Platform, StyleSheet, Text, View, Button, Image, FlatList} from 'react-native';
+import { throwStatement } from '@babel/types';
+import firebase from 'firebase'
 
 
-type Props = {};
+
 export default class ForumPage extends React.Component{
+  
+  constructor (props){
+    super(props);
+    this.state = {
+      textmessage: '',
+      //messages: [],
+    }
+  }
+
+  
+  
+  
+  handleChange = key => val => {
+    this.setState({ [key]: val})
+  }
+
+
+  sendMessage = async() => {
+    
+    
+    
+      
+    if(this.state.textmessage.length > 0){
+      let msgId = firebase.database().ref('chat').child('users/' + firebase.auth().currentUser.uid).push().key
+      let updates = {};
+      let message = {
+        message: this.state.textmessage,
+        //from: '/users/' + firebase.auth().currentUser.uid.Email
+      }
+
+      
+
+      updates[firebase.auth().currentUser.uid + '/' + msgId] = message;
+      firebase.database().ref('chat').update(updates);
+      this.setState({textmessage: ''});
+
+
+      }
+    }
+
+
+
   render() {
     return (
-      <View>
-            <Text style={styles.welcome}>Coming Soon!</Text>
-            <Text style={styles.about}>The Forum page will be a safe space where you will get a chance to anonymously share your thoughts and get advice and support form the rest of the community.</Text>
-      </View>
+      
+      <SafeAreaView>
+        <View style={{ flexDirection: 'row', alignItems: 'center'}}>
+        <TextInput
+            style={styles.TextInput}
+            value={this.state.textmessage}
+            placeholder="Type message..."
+            onChangeText={this.handleChange('textmessage')}
+            />
+            <TouchableOpacity onPress={this.sendMessage}>
+              <Text style={styles.bntText}>Send</Text>
+            </TouchableOpacity>
+            </View>
+      </SafeAreaView>
     );
+
+  
+
+    
+    
   }
 }
 
-const styles = StyleSheet.create({
-                                 container: {
-                                 flex: 1,
-                                 marginTop: 75,
-                                 //marginBottom: 50,
-                                 flexDirection: 'row',
-                                 flexWrap: 'wrap',
-                                 justifyContent: 'space-evenly',
-                                 alignItems: 'center',
-                                 //backgroundColor: '#F5FCFF',
-                                 backgroundColor: 'white',
-                                 },
-                                 welcome: {
-                                 fontSize: 20,
-                                 fontWeight: 'bold',
-                                 textAlign: 'center',
-                                 //marginBottom: 5,
-                                 marginTop: 325,
-                                 },
-                                 instructions: {
-                                 textAlign: 'center',
-                                 color: '#333333',
-                                 marginBottom: 5,
-                                 },
-                                 image: {
-                                 width: 150,
-                                 height: 150,
-                                 borderRadius: 150/2,
-                                 marginBottom: 15,
-                                 },
-                                 tinyImage: {
-                                 width: 50,
-                                 height: 50,
-                                 borderRadius: 50/2,
-                                 },
-                                 about: {
-                                 margin: 15,
-                                 fontStyle: 'italic',
-                                 textAlign: 'center',
-                                 color: '#333333',
-                                 },
-                                 });
 
+
+
+  
+
+
+const offset = 24;
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    marginTop: 75,
+    //marginBottom: 50,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
+    //backgroundColor: '#F5FCFF',
+    backgroundColor: 'white',
+    },
+  title: {
+    marginTop: offset,
+    marginLeft: offset,
+    fontSize: offset,
+  },
+  bottom: {
+    flex: 1,
+    justifyContent: 'flex-end',
+    marginBottom: 20,
+  },
+  nameInput: {
+    height: offset * 2,
+
+    margin: offset,
+    paddingHorizontal: offset,
+    borderColor: '#111111',
+    borderWidth: 1,
+    position: 'absolute',
+  bottom:0
+    
+  },
+  buttonText: {
+    marginLeft: offset,
+    fontSize: offset,
+    
+  },
+});
